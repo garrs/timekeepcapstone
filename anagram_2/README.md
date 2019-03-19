@@ -1,3 +1,8 @@
+READ THIS FIRST!!!
+1. First, type 'npm i' in the console where the path folder is in anagram_2
+2. Then to start, type 'npm start'
+READ THIS FIRST!!!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
