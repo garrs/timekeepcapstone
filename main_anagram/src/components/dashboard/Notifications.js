@@ -8,7 +8,7 @@ const Notifications = (props) => {
       <div className = "card z-depth-0">
         <div className = "card-content">
           <span className = "card-title">Notifications</span>
-          <ul className ="notifications" style={{overflowY: 'scroll', height: "18rem"}}>
+          <ul className ="notifications" style={{overflowY: 'scroll', height: "28rem"}}>
             {notifications && notifications.map( item => {
               return (
                 <li key={item.id}>

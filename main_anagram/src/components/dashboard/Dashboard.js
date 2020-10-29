@@ -7,6 +7,7 @@ import {Redirect} from 'react-router-dom'
 // import {CSVLink} from "react-csv"
 import Notifications from './Notifications'
 // import moment from 'moment'
+// source for sample pictures: https://frontmission.fandom.com/wiki/
 
 class Dashboard extends Component {
 
@@ -44,12 +45,12 @@ class Dashboard extends Component {
         // });
         // console.log('after the for customExportEmployee ' + JSON.stringify(customExportEmployee));
 
-        const headers = [
-            { label: "First Name", key: "firstName" },
-            { label: "Last Name", key: "lastName" },
-            { label: "Scanned at ", key: "recentScan" },
-            { label: "Time IN/OUT", key: "scanStatus" }
-          ];
+        // const headers = [
+        //     { label: "First Name", key: "firstName" },
+        //     { label: "Last Name", key: "lastName" },
+        //     { label: "Scanned at ", key: "recentScan" },
+        //     { label: "Time IN/OUT", key: "scanStatus" }
+        //   ];
         
         // auth for test@gmail.com
         if(auth.uid !== '8QMg2SwapHWHP5IlbXZuCrtGjeI2') return <Redirect to= '/signin' />
@@ -70,7 +71,7 @@ class Dashboard extends Component {
                         Download me
                         </CSVLink>
                     </div> */}
-                    <div className ="col s12 m5 offset-m1">
+                    <div className ="col s12 m5 offset-m5 not">
                         <Notifications notifications = {notifications}/>
                     </div>
                 </div>
@@ -93,6 +94,6 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect([
         {collection: 'employees', orderBy:['firstName', 'asc']},
-        {collection: 'notifications', limit: 20, orderBy: ['recentScan', 'desc']}
+        {collection: 'notifications', limit: 25, orderBy: ['recentScan', 'desc']}
     ])
 )(Dashboard)

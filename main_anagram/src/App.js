@@ -7,6 +7,10 @@ import ViewHistory from './components/attendance/ViewHistory'
 import CreateEmployee from './components/attendance/CreateEmployee'
 import DeleteEmployee from './components/attendance/DeleteEmployee'
 import UpdateEmployee from './components/attendance/UpdateEmployee'
+import ViewSummary from './components/attendance/ViewSummary'
+// import EmployeeStatus from './components/attendance/EmployeeStatus'
+// import ViewSum from './components/attendance/ViewSum'
+import Bonus from './components/attendance/Bonus'
 
 class App extends Component {
   render() {
@@ -18,9 +22,13 @@ class App extends Component {
             <Route exact path='/'component={Dashboard} />
             <Route path='/signIn' component={SignIn} />
             <Route path='/view' component={ViewHistory} />
+            <Route path='/summary' component={ViewSummary} />
             <Route path='/delete' component={DeleteEmployee} />
             <Route path='/create' component={CreateEmployee} />
             <Route path='/update' component={UpdateEmployee} />
+            {/* <Route path='/viewsum' component={ViewSum} /> */}
+            {/* <Route path= '/statuscheck/:id' component={EmployeeStatus} /> */}
+            <Route path= '/bonus' component={Bonus} />
           </Switch>
         </div>
       </BrowserRouter>

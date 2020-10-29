@@ -2,12 +2,12 @@ export const deleteEmployee = (employee) => {
     return (dispatch, getState, {getFirebase, getFirestore}) =>{
         const firestore = getFirestore();
         firestore.collection('employees')
-        .where("idNum", "==", employee.idNum)
+        .where("hashF", "==", employee.hashF)
         .where("firstName", "==", employee.firstName)
         .where("lastName", "==", employee.lastName)
         .get()
         .then((querySnapshot) => {
-            if (querySnapshot.docs.length == 0)
+            if (querySnapshot.docs.length === 0)
             {
                 console.log("inside if")
                 console.log(querySnapshot)

@@ -17,9 +17,16 @@ export const signIn = (credentials) => {
   export const signOut = () => {
     return (dispatch, getState, {getFirebase}) => {
       const firebase = getFirebase();
-  
-      firebase.auth().signOut().then(() => {
-        dispatch({ type: 'SIGNOUT_SUCCESS' })
-      });
+      
+      var pas = prompt("Please enter the password to log-out: ")
+      // if (pas == "holyavenger") {
+      if (pas === "*******") {
+        firebase.auth().signOut().then(() => {
+          dispatch({ type: 'SIGNOUT_SUCCESS' })
+        });
+      }
+      else {
+        window.alert("You failed to log-out!")
+      }
     }
   }

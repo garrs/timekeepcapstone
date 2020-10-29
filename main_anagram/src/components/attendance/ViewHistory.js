@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {signIn} from '../../store/actions/authActions'
 import {Redirect} from 'react-router-dom'
 import {firestoreConnect} from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -8,7 +7,9 @@ import ReactTable from "react-table"
 import "react-table/react-table.css"
 import '../../App.css';
 import Moment from 'moment'
+// import moment from 'moment'
 import ExportToExcel from "./ExportToExcel"
+// import matchSorter from 'match-sorter'
 
 class ViewHistory extends Component {
 
@@ -28,40 +29,72 @@ class ViewHistory extends Component {
             posts: []
         }
     }
+
     render() {
         //const {employees, auth, employeeCSV} = this.props;
         const {auth, notifications} = this.props;
         var notificationsCheck = notifications ? notifications : [];
+        // console.log(this.calculateSummary(notificationsCheck));
+
+
         if(auth.uid !== '8QMg2SwapHWHP5IlbXZuCrtGjeI2') return <Redirect to= '/signin' />
         // if(!auth.uid) return <Redirect to= '/signin' />
 
+        //console.log(notificationsCheck)
         const columns =[
             {
-                Header: "Last Name",
-                accessor: "lastName"
+                Header: "ID Number",
+                accessor: "idNum"
+            },
+            // {
+            //     Header: "Last Name",
+            //     accessor: "lastName"
+            // },
+            // {
+            //     Header: "First Name",
+            //     accessor: "firstName"
+            // },
+            {
+                Header: "Full Name",
+                accessor: "fullName"
             },
             {
-                Header: "First Name",
-                accessor: "firstName"
-            },
-            {
-                // got lazy changing the id name to something not 'recent scan' as used below for scanStatus
+                // got lazy changing the id name to 'scanTime' not 'recent scan' as used below for scanStatus
                 id: "recentScan",
+                Header: "Scan Date",
+                accessor: notifications => { 
+                    return Moment(notifications.recentScan.toDate())
+                    .local()
+                    .format("ll")
+                    }
+            },
+            {
+                // got lazy changing the id name to 'scanTime' not 'recent scan' as used below for scanStatus
+                id: "recentScanDouble",
                 Header: "Scan Time",
                 accessor: notifications => { 
                     return Moment(notifications.recentScan.toDate())
                     .local()
-                    .format("lll")
+                    .format("LT")
                     }
                 
             },
+            // {
+            //     id: "timeBefore",
+            //     Header: "Past Scan",
+            //     accessor: notifications => { 
+            //         if (notifications.timeBefore !== null){
+            //         return Moment(notifications.timeBefore.toDate())
+            //         .local()
+            //         .format("lll")
+            //         }
+            //         else {
+            //             return null
+            //         } 
+            //     }
+            // },
             {
-                Header: "Recent Scan",
-                accessor: "scanStatus"
-                
-            },
-            {
-                Header: "Scan Type",
+                Header: "Scan Reason",
                 accessor: "goingToOrFro"
                 
             }
@@ -69,10 +102,12 @@ class ViewHistory extends Component {
         return (
            <div className ="center">
            <ReactTable 
-           className="reactfonts"
+           className="-striped reactfonts"
            columns={columns}
-           data={notifications}
+           data={notificationsCheck}
+           sortable
            filterable
+           defaultPageSize={notificationsCheck.length}
            >
                {(state, filtredData, instance) => {
                this.reactTable=state.pageRows.map(post => { return post});

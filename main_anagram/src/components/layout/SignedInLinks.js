@@ -9,8 +9,10 @@ const SignedInLinks = (props) => {
             <li><NavLink to='/delete'> Dismiss Employee</NavLink> </li>
             <li><NavLink to='/create'> Register Employee</NavLink> </li>
             <li><NavLink to='/view'> View History</NavLink> </li>
+            <li><NavLink to='/summary'> View Summary</NavLink> </li>
             <li><a onClick={props.signOut}> Log Out</a> </li>
-            <li><NavLink to='/' className='btn btn-floating pink lighten-1'> JTG </NavLink> </li>
+            {/* <li><NavLink to='/' className='btn btn-floating pink lighten-1'> JTG </NavLink> </li> */}
+            <li><NavLink to='/bonus' className='btn btn-floating pink lighten-1'> JTG </NavLink> </li>
         </ul>
             
 

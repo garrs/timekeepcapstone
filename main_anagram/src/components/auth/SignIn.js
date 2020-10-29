@@ -22,8 +22,8 @@ class SignIn extends Component {
 
   render() {
     const {authError,auth} = this.props;
-    if (auth.uid == '8QMg2SwapHWHP5IlbXZuCrtGjeI2') return <Redirect to= '/' />
-    if (auth.uid == 'YACs5Ol1lzcoSmZd1PToi4vdg6q2') return <Redirect to= '/update' />
+    if (auth.uid === '8QMg2SwapHWHP5IlbXZuCrtGjeI2') return <Redirect to= '/' />
+    if (auth.uid === 'YACs5Ol1lzcoSmZd1PToi4vdg6q2') return <Redirect to= '/update' />
 
     return (
       <div className = "container">

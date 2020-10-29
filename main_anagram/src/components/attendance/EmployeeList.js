@@ -7,9 +7,9 @@ const EmployeeList = ({employees}) => {
         <div className = 'employee-list section'>
             { employees && employees.map(employee => {
                 return (
-                 <Link to={'/employee/' + employee.id}>   
+                //  <Link to={'/statuscheck/' + employee.id}>   
                     <Employee employee={employee} key={employee.id} />
-                </Link>
+                // </Link>
                 )
             })}
         </div>
